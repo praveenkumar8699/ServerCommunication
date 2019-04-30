@@ -13,6 +13,7 @@
 		E109E9342271D07000A7C5EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E109E9332271D07000A7C5EB /* Assets.xcassets */; };
 		E109E9372271D07000A7C5EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E109E9352271D07000A7C5EB /* LaunchScreen.storyboard */; };
 		E178AD022272D38A00F28EA5 /* Quotes&ActorsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E178AD012272D38A00F28EA5 /* Quotes&ActorsController.swift */; };
+		E1BE97B02276A6F30084B792 /* States&CitiesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BE97AF2276A6F30084B792 /* States&CitiesController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		E109E9362271D07000A7C5EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E109E9382271D07000A7C5EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E178AD012272D38A00F28EA5 /* Quotes&ActorsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Quotes&ActorsController.swift"; sourceTree = "<group>"; };
+		E1BE97AF2276A6F30084B792 /* States&CitiesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "States&CitiesController.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				E109E9352271D07000A7C5EB /* LaunchScreen.storyboard */,
 				E109E9382271D07000A7C5EB /* Info.plist */,
 				E178AD012272D38A00F28EA5 /* Quotes&ActorsController.swift */,
+				E1BE97AF2276A6F30084B792 /* States&CitiesController.swift */,
 			);
 			path = ServerCommunication;
 			sourceTree = "<group>";
@@ -141,6 +144,7 @@
 				E109E92F2271D07000A7C5EB /* TempConverterController.swift in Sources */,
 				E109E92D2271D07000A7C5EB /* AppDelegate.swift in Sources */,
 				E178AD022272D38A00F28EA5 /* Quotes&ActorsController.swift in Sources */,
+				E1BE97B02276A6F30084B792 /* States&CitiesController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

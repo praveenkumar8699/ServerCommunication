@@ -55,9 +55,11 @@ class TempConverterController: UIViewController,UITextFieldDelegate {
     //on Click of Convert
     @IBAction func onConvertPress(_ sender: UIButton) {
         
-        activityIndicator.startAnimating()
+        
         
         if(tempTextField.hasText && conversionTypeSelected) {// if textfield has data and segment is selected
+            
+            activityIndicator.startAnimating()
             
             print("convert button pressed")
             print("Data in text Field : \(tempTextField.text!)")

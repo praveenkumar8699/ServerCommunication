@@ -1,68 +1,70 @@
 //
-//  Quotes&ActorsController.swift
+//  States&CitiesController.swift
 //  ServerCommunication
 //
-//  Created by praveen Kumar on 26/04/19.
+//  Created by praveen Kumar on 29/04/19.
 //  Copyright © 2019 praveen Kumar. All rights reserved.
 //
 
 import UIKit
 
-class Quotes_ActorsController: UIViewController {
+class States_CitiesController: UIViewController {
     
-    //Declaring Global Variables
+
     var request : URLRequest!
     var dataTask : URLSessionDataTask!
-    var quotes_ActorsSelected : Bool!
-    @IBOutlet weak var quotes_ActorsSegmentedControl: UISegmentedControl!
+    var city_StatesSelected : Bool!
+    @IBOutlet weak var city_StateSegmentedControl: UISegmentedControl!
     @IBOutlet weak var sliderValueLabel: UILabel!
     @IBOutlet weak var slider: UISlider!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var viewInScrollView: UIView!
     var labels = [UILabel]()
     var label : UILabel!
-    @IBOutlet weak var viewInScrollView: UIView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         //Adding Delegates and necessary things
-        quotes_ActorsSegmentedControl.selectedSegmentIndex = UISegmentedControl.noSegment
-        quotes_ActorsSegmentedControl.addTarget(self, action: #selector(segmentedControl(segmentedControl:)), for: UIControl.Event.valueChanged)
-        quotes_ActorsSelected = false
+        city_StateSegmentedControl.selectedSegmentIndex = UISegmentedControl.noSegment
+        city_StateSegmentedControl.addTarget(self, action: #selector(segmentedControl(segmentedControl:)), for: UIControl.Event.valueChanged)
+        city_StatesSelected = false
         sliderValueLabel.text = String(Int(slider.value))
         slider.addTarget(self, action: #selector(sliderChange(_:)), for: UIControl.Event.valueChanged)
-        
+
     }
     
     @objc func segmentedControl(segmentedControl : UISegmentedControl) {
-        quotes_ActorsSelected = true
+        city_StatesSelected = true
     }
     
     @objc func sliderChange(_ slider : UISlider) {
         sliderValueLabel.text = String(Int(slider.value))
     }
     
-    @IBAction func onGetPress(_ sender: UIButton) {
+    @IBAction func onGetPressed(_ sender: UIButton) {
         
         
         
-        if(quotes_ActorsSelected) {
-            
+        if(city_StatesSelected) {
+            activityIndicator.startAnimating()
             activityIndicator.startAnimating()
             
             print("GET button pressed")
             print("Slider Value : \(Int(slider.value))")
-            print("Quotes or Actors: \(quotes_ActorsSegmentedControl.titleForSegment(at: quotes_ActorsSegmentedControl.selectedSegmentIndex)!)")
+            print("Quotes or Actors: \(city_StateSegmentedControl.titleForSegment(at: city_StateSegmentedControl.selectedSegmentIndex)!)")
             
-            request = URLRequest(url: URL(string: "https://www.brninfotech.com/tws/Quotes.php")!)
-            request.httpMethod = "POST"
             
-            if(quotes_ActorsSegmentedControl.titleForSegment(at: quotes_ActorsSegmentedControl.selectedSegmentIndex)! == "Quotes") {
+            
+            if(city_StateSegmentedControl.titleForSegment(at: city_StateSegmentedControl.selectedSegmentIndex)! == "City") {
                 
                 if(Int(slider.value) == 1) {
                     
-                    let dataToSend = "type=quote&quantity=1"
-                    request.httpBody = dataToSend.data(using: String.Encoding.utf8)
+//                    let dataToSend = "type=quote&quantity=1"
+//                    request.httpBody = dataToSend.data(using: String.Encoding.utf8)
+                    
+                    request = URLRequest(url: URL(string: "https://www.brninfotech.com/tws/IndiaDetails.php?type=city&quantity=1")!)
+                    request.httpMethod = "GET"
                     
                     dataTask = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
                         //print(data!)
@@ -102,8 +104,12 @@ class Quotes_ActorsController: UIViewController {
                 }
                 
                 if(Int(slider.value) > 1) {
-                    let dataToSend = "type=quotes&quantity=\(Int(slider.value))"
-                    request.httpBody = dataToSend.data(using: String.Encoding.utf8)
+                    
+//                    let dataToSend = "type=quotes&quantity=\(Int(slider.value))"
+//                    request.httpBody = dataToSend.data(using: String.Encoding.utf8)
+                    
+                    request = URLRequest(url: URL(string: "https://www.brninfotech.com/tws/IndiaDetails.php?type=cities&quantity=\(Int(slider.value))")!)
+                    request.httpMethod = "GET"
                     
                     dataTask = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
                         print(data!)
@@ -132,13 +138,13 @@ class Quotes_ActorsController: UIViewController {
                                 var no = 1
                                 for str in convertedData {
                                     print(str.count)
-                                    self.label = UILabel(frame: CGRect(x: 10, y: pointY, width: 370, height: 100))
+                                    self.label = UILabel(frame: CGRect(x: 10, y: pointY, width: 370, height: 50))
                                     self.label.text = String(no)+"."+str
                                     self.label.textColor = #colorLiteral(red: 0.6679978967, green: 0.4751212597, blue: 0.2586010993, alpha: 1)
                                     self.label.numberOfLines = 7
                                     self.viewInScrollView.addSubview(self.label)
                                     self.labels.append(self.label)
-                                    pointY += 80
+                                    pointY += 50
                                     no += 1
                                 }
                             }
@@ -153,11 +159,15 @@ class Quotes_ActorsController: UIViewController {
                 
             }
             
-            if(quotes_ActorsSegmentedControl.titleForSegment(at: quotes_ActorsSegmentedControl.selectedSegmentIndex)! == "Actors") {
+            if(city_StateSegmentedControl.titleForSegment(at: city_StateSegmentedControl.selectedSegmentIndex)! == "State") {
                 
                 if(Int(slider.value) == 1) {
-                    let dataToSend = "type=actor&quantity=1"
-                    request.httpBody = dataToSend.data(using: String.Encoding.utf8)
+                    
+//                    let dataToSend = "type=actor&quantity=1"
+//                    request.httpBody = dataToSend.data(using: String.Encoding.utf8)
+                    
+                    request = URLRequest(url: URL(string: "https://www.brninfotech.com/tws/IndiaDetails.php?type=state&quantity=1")!)
+                    request.httpMethod = "GET"
                     
                     dataTask = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
                         
@@ -202,8 +212,12 @@ class Quotes_ActorsController: UIViewController {
                 }
                 
                 if(Int(slider.value) > 1) {
-                    let dataToSend = "type=actors&quantity=\(Int(slider.value))"
-                    request.httpBody = dataToSend.data(using: String.Encoding.utf8)
+                    
+//                    let dataToSend = "type=actors&quantity=\(Int(slider.value))"
+//                    request.httpBody = dataToSend.data(using: String.Encoding.utf8)
+                    
+                    request = URLRequest(url: URL(string: "https://www.brninfotech.com/tws/IndiaDetails.php?type=states&quantity=\(Int(slider.value))")!)
+                    request.httpMethod = "GET"
                     
                     dataTask = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
                         
@@ -252,7 +266,7 @@ class Quotes_ActorsController: UIViewController {
             
             
             
-        } else if(quotes_ActorsSelected == false) {
+        } else if(city_StatesSelected == false) {
             print("Select Quotes or Actors from segemnted control")
         }
         
